@@ -28,7 +28,7 @@ window.onload = function() {
         methods: {
             loadWords: function () {
                 // Ping the server for some sweet words!
-                fetch(live_url, {
+                fetch(url, {
                     headers: {
                         'content-type': 'application/json'
                     },
