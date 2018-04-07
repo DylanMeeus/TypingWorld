@@ -2,6 +2,7 @@
 // bootstrap app to the loading of the page (it doesn't work as shown in vue their examples)
 
 var url = "http://localhost:8080/words?amount=100";
+var live_url = "https://serene-sea-26357.herokuapp.com/words?amount=100";
 
 // setup
 var loadedWords = [];
@@ -17,7 +18,7 @@ window.onload = function() {
     var app = new Vue({
         el: "#app",
         data: {
-            wordlist: "Hello World!",
+            wordlist: "",
             timer: 60,
             correctlyTypedChars : 0,
             totalTypedChars : 0,
@@ -27,7 +28,7 @@ window.onload = function() {
         methods: {
             loadWords: function () {
                 // Ping the server for some sweet words!
-                fetch(url, {
+                fetch(live_url, {
                     headers: {
                         'content-type': 'application/json'
                     },
