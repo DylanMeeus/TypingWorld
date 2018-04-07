@@ -14,16 +14,20 @@ var timerStarted = false;
 // user based
 var wordsTyped = 0;
 
+
 window.onload = function() {
     var app = new Vue({
         el: "#app",
         data: {
             wordlist: "",
-            timer: 60,
+            timer: 2,
             correctlyTypedChars : 0,
             totalTypedChars : 0,
             cpm : 0,
-            wpm : 0
+            wpm : 0,
+
+            // ui variables
+            resultsVisible: false
         },
         methods: {
             loadWords: function () {
