@@ -1,0 +1,1 @@
+web: java -jar -Dserver.port=$PORT TypingWorldBackend/target/TypingWorld-1.0-SNAPSHOT.jar
