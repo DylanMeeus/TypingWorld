@@ -114,16 +114,14 @@ body {
 /*
 * Custom parts
 */
-.resultsVisible{
-    color: blue;
-}
 
 .fixed-textarea{
     width: 600px;
     font-size: 24px;
 }
 
-.results{
+.results {
+    font-size: 20px;
     margin-top: 40px;
     list-style-type: none;
 }

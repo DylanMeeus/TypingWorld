@@ -84,12 +84,12 @@ window.onload = function() {
             },
 
             testFinished : function() {
-                // Think of how to show the stats in a better way!
+                // show the stats
+                this.resultsVisible = true;
 
                 //calculate cpm, wpm
                 this.cpm = this.correctlyTypedChars;
                 this.wpm = this.cpm / 5;
-
             } ,
         },
         beforeMount() {

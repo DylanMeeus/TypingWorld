@@ -36,7 +36,7 @@
                 <input type="text" id="userinput" v-on:input="updateUserInput"/>
             </div>
 
-            <div id="results" v-bind:class="{resultsVisible: resultsVisible}">
+            <div id="results" v-if="resultsVisible">
                 <!-- play with visibility / invisibility here? -->
                 <ul class="results">
                     <li><label> Total characters typed: {{ totalTypedChars }} </label></li>
