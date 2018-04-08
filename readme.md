@@ -1,7 +1,7 @@
 Typing World
 ---
 
-[See it in live!]("http://www.it-ca.net/TypingWorld")
+[See it in action]("http://www.it-ca.net/TypingWorld")!
 
 This is an open source implementation of a website to do typing tests and measures your speed in typing.
 
