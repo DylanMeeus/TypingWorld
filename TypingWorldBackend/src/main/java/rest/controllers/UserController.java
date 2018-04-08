@@ -12,11 +12,9 @@ public class UserController {
     @PostMapping("/register")
     public boolean register(final String username,
                             final String password) {
-        System.out.println("registering..");
         if (username == null || password == null) {
             return false;
         }
-        System.out.printf("%s -- %s\n", username, password);
         return UserService.register(username, password);
     }
 

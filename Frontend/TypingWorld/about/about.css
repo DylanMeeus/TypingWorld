@@ -3,6 +3,11 @@
  * Globals
  */
 
+.masthead {
+    width: 600px;
+
+}
+
 /* Links */
 a,
 a:focus,
@@ -67,6 +72,7 @@ body {
 .mastfoot {
     color: rgba(255, 255, 255, .5);
 }
+
 
 .cover-container {
     max-width: 64em;
