@@ -2,6 +2,9 @@ package typingworld.database;
 
 import org.jetbrains.annotations.NotNull;
 import org.postgresql.Driver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import typingworld.model.User;
 
 import java.io.IOException;
@@ -65,8 +68,9 @@ public class Database {
     }
 
     public boolean register(@NotNull final String username,
-                            @NotNull final String hashedPassword) {
+                            @NotNull final String password) {
         try {
+            var hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
             var statement = connection.prepareStatement("insert into users (username, password) values (?,?)");
             statement.setString(1, username);
             statement.setString(2, hashedPassword);
