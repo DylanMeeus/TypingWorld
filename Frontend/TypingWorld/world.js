@@ -14,7 +14,7 @@ var timerStarted = false;
 // user based
 var wordsTyped = 0;
 
-var startTime = 30;
+var startTime = 2;
 
 window.onload = function() {
     var app = new Vue({
@@ -58,6 +58,7 @@ window.onload = function() {
                     this.resultsVisible = false;
                     this.correctlyTypedChars = 0;
                     wordsTyped = 0;
+                    timerStarted = false;
                 }
 
                 var self = this; // for when we lose the 'this' scope
@@ -102,6 +103,7 @@ window.onload = function() {
                 // reset ui elements / values
                 var inputfield = document.getElementById("userinput");
                 inputfield.value = "";
+                inputfield.blur();
                 this.timer = startTime;
             } ,
         },
