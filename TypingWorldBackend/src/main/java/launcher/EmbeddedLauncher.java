@@ -18,6 +18,7 @@ public class EmbeddedLauncher {
 
     public static void main(String[] args) {
         var db = Database.getDatabase();
+        db.getUsers();
         SpringApplication.run(EmbeddedLauncher.class, args);
     }
 

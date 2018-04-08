@@ -2,6 +2,7 @@ package typingworld.database;
 
 import org.jetbrains.annotations.NotNull;
 import org.postgresql.Driver;
+import typingworld.model.User;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,19 +11,20 @@ import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class Database {
 
     @NotNull
     private static Database database = new Database();
+    private Connection connection;
 
     private Database(){
         try {
-            var connection = getConnection();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+            connection = getConnection();
+        } catch (URISyntaxException  | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -64,7 +66,38 @@ public class Database {
 
     public boolean register(@NotNull final String username,
                             @NotNull final String hashedPassword) {
+        try {
+            var statement = connection.prepareStatement("insert into users (username, password) values (?,?)");
+            statement.setString(1, username);
+            statement.setString(2, hashedPassword);
+            statement.execute();
+            return true; // if we reach this, everything worked!
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
+    @NotNull
+    public List<User> getUsers(){
+        var users = new ArrayList<User>();
+        try {
+            var results = connection.createStatement().executeQuery("select * from users");
+            while (results.next()) {
+                var username = results.getString("username");
+                var firstname = results.getString("firstname");
+                var lastname = results.getString("lastname");
+                var email = results.getString("email");
+                users.add(new User.UserBuilder()
+                        .username(username)
+                        .firstname(firstname)
+                        .lastname(lastname)
+                        .email(email)
+                        .build());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
 }

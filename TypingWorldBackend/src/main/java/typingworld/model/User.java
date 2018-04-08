@@ -29,4 +29,36 @@ public class User {
     public String getLastname() {
         return lastname;
     }
+
+    public static final class UserBuilder{
+        private String username;
+        private String firstname;
+        private String lastname;
+        private String email;
+
+        public UserBuilder username(String username){
+            this.username = username;
+            return this;
+        }
+
+        public UserBuilder firstname(String firstname){
+            this.firstname = firstname;
+            return this;
+        }
+
+        public UserBuilder lastname(String lastname){
+            this.lastname = lastname;
+            return this;
+        }
+
+        public UserBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public User build(){
+            return new User(email, username, firstname, lastname);
+        }
+    }
+
 }

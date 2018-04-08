@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserService {
 
     public static List<User> getUsers(){
-        return List.of(new User("m@d.com", "Insanity", "Dylan", "Meeus"));
+        return Database.getDatabase().getUsers();
     }
 
     public static boolean register(@NotNull final String username,
@@ -18,5 +18,7 @@ public interface UserService {
         // update the database with these values?
         return Database.getDatabase().register(username, password);
     }
+
+
 
 }
