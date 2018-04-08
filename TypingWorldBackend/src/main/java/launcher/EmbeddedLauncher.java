@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import typingworld.database.Database;
 
 /**
  * Launch the server on tomcat using Spring, rather than starting a war.
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class EmbeddedLauncher {
 
     public static void main(String[] args) {
+        var db = Database.getDatabase();
         SpringApplication.run(EmbeddedLauncher.class, args);
     }
 
