@@ -14,13 +14,14 @@ var timerStarted = false;
 // user based
 var wordsTyped = 0;
 
+var startTime = 30;
 
 window.onload = function() {
     var app = new Vue({
         el: "#app",
         data: {
             wordlist: "",
-            timer: 2,
+            timer: startTime,
             correctlyTypedChars : 0,
             totalTypedChars : 0,
             cpm : 0,
@@ -51,9 +52,15 @@ window.onload = function() {
 
             updateUserInput: function() {
                 // todo: check each letter of the input box against the ones that need to be typed
-                var self = this; // for when we lose the 'this' scope
 
-                // if the last character typed is a space, ignore it!
+                // hide the old scores if they are visible
+                if (this.resultsVisible) {
+                    this.resultsVisible = false;
+                    this.correctlyTypedChars = 0;
+                    wordsTyped = 0;
+                }
+
+                var self = this; // for when we lose the 'this' scope
                 var inputfield = document.getElementById("userinput");
                 if (inputfield.value[inputfield.value.length - 1] == " ") {
                     inputfield.value = inputfield.value.substring(0, inputfield.value.length - 1);
@@ -86,10 +93,16 @@ window.onload = function() {
             testFinished : function() {
                 // show the stats
                 this.resultsVisible = true;
-
+                var x = 60 / startTime;
                 //calculate cpm, wpm
-                this.cpm = this.correctlyTypedChars;
+                this.cpm = this.correctlyTypedChars * x;
                 this.wpm = this.cpm / 5;
+
+
+                // reset ui elements / values
+                var inputfield = document.getElementById("userinput");
+                inputfield.value = "";
+                this.timer = startTime;
             } ,
         },
         beforeMount() {
