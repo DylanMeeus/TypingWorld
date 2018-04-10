@@ -20,4 +20,35 @@ public class TypingController {
         }
         return TypingService.getWords(language, count);
     }
+
+    /**
+     * Log a typing  test to the database
+     * Data comes in as string and is converted to appropriate type
+     * The sendtime is determined by the server rather than the client.
+     * @param username
+     * @param cpm
+     * @param totalchars
+     * @param correctchars
+     * @return
+     */
+    @PostMapping("/logtypingtest")
+    public boolean logTypingTest(final String username,
+                                 final String cpm,
+                                 final String totalchars,
+                                 final String correctchars) {
+
+        if (username == null || username.isEmpty()) {
+            return false;
+        }
+
+        try {
+            var icpm = Integer.parseInt(cpm);
+            var itotalChars = Integer.parseInt(totalchars);
+            var iCorrectChars = Integer.parseInt(correctchars);
+            return TypingService.logTypingTest(username, icpm, itotalChars, iCorrectChars);
+        } catch (NumberFormatException nfe) {
+            nfe.printStackTrace();
+            return false;
+        }
+    }
 }

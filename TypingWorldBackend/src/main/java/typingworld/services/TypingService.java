@@ -31,4 +31,10 @@ public interface TypingService {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    public static boolean logTypingTest(final String username,
+                                 final int cpm,
+                                 final int totalchars,
+                                 final int correctchars) {
+        return false;
+    }
 }
