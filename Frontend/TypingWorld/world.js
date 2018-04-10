@@ -41,7 +41,7 @@ window.onload = function() {
                     mode: "cors"
                 }).then(
                     response => response.json()
-                ).then(arr =>{
+                ).then(arr => {
                         // apperantly Jackson or Javascript removes the quotes.
                         loadedWords = arr;
                         visibleWords = loadedWords.slice(wordsTyped, wordsTyped + visibleWordCount);

@@ -7,9 +7,11 @@ window.onload = function() {
         el: "#registration",
         data: {
             username: "",
-            password: ""
+            password: "",
+            hasError: false
         }, methods: {
             submit: function () {
+                var self = this;
                 var usernameField = document.getElementById("username");
                 var pwField = document.getElementById("password");
 
@@ -19,7 +21,16 @@ window.onload = function() {
                 fetch(url, {
                     method: "POST",
                     body: data
-                }).then(result => console.log(result));
+                }).then(result => result.json())
+                    .then(result => {
+                        if (result) {
+                            // success!
+                            self.hasError = false;
+                        } else {
+                            self.hasError = true;
+                            window.location.replace(window.location.href.substring(0,window.location.href.length-"registration.registration.html".length) + "account.html");
+                        }
+                    });
 
             }
         }

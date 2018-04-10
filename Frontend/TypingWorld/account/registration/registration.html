@@ -27,15 +27,18 @@
                 <a class="nav-link active" href="account/registration/registration.html">Account</a>
                 <a class="nav-link" href="../../about/about.html">About</a>
             </nav>
+            <a href="https://www.patreon.com/bePatron?u=10226736"> <img src="../../resources/become_a_patron_button.png"/> </a>
         </div>
     </header>
 
     <main role="main" class="inner cover">
-        <p>Register to keep track of your typing speed!</p>
+        <p><b>Register to keep track of your typing speed!</b></p>
+
         <div id="registration">
-            <input id="username" v-model="username" placeholder="username"/>
-            <input id="password" v-model="password" placeholder="password" type="password"/>
-            <button v-on:click="submit"> Register </button>
+            <p class="errorMessage" v-if="hasError">Something went wrong when registering your account! Please try again later or contact us on <a href="https://discord.gg/VQnJFY">Discord</a> </p>
+            <input id="username" v-model="username" placeholder="username"/><br/>
+            <input id="password" v-model="password" placeholder="password" type="password"/><br/>
+            <button class="btn btn-default" v-on:click="submit"> Register </button>
         </div>
     </main>
 
